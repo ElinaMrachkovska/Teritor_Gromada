@@ -13,9 +13,9 @@ export default function Header() {
             <a href="#" className="hover:text-white">YouTube</a>
           </div>
           <div className="flex gap-4">
-            <a href="tel:+380385000000" className="hover:text-white">тел. +38 (0385) 50-00-00</a>
-            <a href="mailto:rada@kam-pod-gromada.gov.ua" className="hover:text-white">
-              rada@kam-pod-gromada.gov.ua
+            <a href="tel:+380385000000" className="hover:text-white">тел. +38 (0349) 50-00-00</a>
+            <a href="mailto:territor_hromada_kam-pod@gmail.com" className="hover:text-white">
+              territor_hromada_kam-pod@gmail.com
             </a>
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function Header() {
           />
           <span className="font-display leading-tight">
             <span className="block text-[19px] font-bold text-text">
-              Кам'янець-Подільська громада
+              Територіальна громада міста Кам'янця-Подільського
             </span>
             <span className="block text-[12.5px] font-sans text-ink-2">
               Громада — це мешканці, що діють
