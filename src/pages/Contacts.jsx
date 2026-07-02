@@ -1,15 +1,15 @@
 import { useState } from "react";
 import PageHero from "../components/PageHero";
 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVTS-pWcybnvUp-0l84y-ddZ9ZA4V9Nn18R-LRG3ETCzg5exV184-kp1pObzOzbbC1/exec";
+
 const departments = [
-  { name: "Фінансове управління", phone: "(0385) 50-01-12" },
-  { name: "Відділ освіти", phone: "(0385) 50-01-23" },
-  { name: "Управління ЖКГ", phone: "(0385) 50-01-34" },
-  { name: "Відділ культури і туризму", phone: "(0385) 50-01-45" },
-  { name: "Управління соціального захисту", phone: "(0385) 50-01-56" },
+  { name: "управління..", phone: "(0385) 50-01-12" },
+  { name: "управління", phone: "(0385) 50-01-23" },
+  { name: "Управління..", phone: "(0385) 50-01-34" },
+  { name: "Управління..", phone: "(0385) 50-01-56" },
 ];
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVTS-pWcybnvUp-0l84y-ddZ9ZA4V9Nn18R-LRG3ETCzg5exV184-kp1pObzOzbbC1/exec";
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", email: "", topic: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
