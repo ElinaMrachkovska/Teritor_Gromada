@@ -9,6 +9,7 @@ const departments = [
   { name: "Управління соціального захисту", phone: "(0385) 50-01-56" },
 ];
 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVTS-pWcybnvUp-0l84y-ddZ9ZA4V9Nn18R-LRG3ETCzg5exV184-kp1pObzOzbbC1/exec";
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", email: "", topic: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
