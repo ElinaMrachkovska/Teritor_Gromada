@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PageHero from "../components/PageHero";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVTS-pWcybnvUp-0l84y-ddZ9ZA4V9Nn18R-LRG3ETCzg5exV184-kp1pObzOzbbC1/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZm3VG1bACTWMnJCAa8GvJ04rUC7Ghipb_Kq1of15HvkInTO3EsFzd-89VufsYjoC2/exec";
 
 const departments = [
   { name: "управління..", phone: "(0385) 50-01-12" },
@@ -13,6 +13,8 @@ const departments = [
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", email: "", topic: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,7 +22,28 @@ export default function Contacts() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors", // Потрібно для Google Apps Script, щоб уникнути CORS-блокувань
+      headers: {
+        "Content-Type": "text/plain",
+      },
+      body: JSON.stringify(form),
+    })
+      .then(() => {
+        setSubmitted(true);
+        setForm({ name: "", email: "", topic: "", message: "" }); // Очищаємо форму
+      })
+      .catch((err) => {
+        console.error("Помилка відправки:", err);
+        setError("Не вдалося надіслати дані. Спробуйте пізніше.");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   }
 
   return (
@@ -43,7 +66,7 @@ export default function Contacts() {
             </div>
             <div className="bg-paper border border-ink/10 rounded-[2px] p-6">
               <h3 className="text-base border-b-2 border-ink pb-2.5 mb-3.5 font-display font-semibold">
-                Структурні підрозділи
+                Structure_units
               </h3>
               <ul className="space-y-2 text-sm list-disc pl-4.5">
                 {departments.map((d) => (
@@ -69,6 +92,12 @@ export default function Contacts() {
               </div>
             )}
 
+            {error && (
+              <div className="mb-4 px-4 py-3 rounded-[2px] bg-red-100 text-red-700 text-sm font-medium">
+                {error}
+              </div>
+            )}
+
             <label htmlFor="name" className="text-[13.5px] font-semibold block mb-1.5">
               Ім'я та прізвище
             </label>
@@ -76,6 +105,7 @@ export default function Contacts() {
               id="name"
               name="name"
               type="text"
+              required
               value={form.name}
               onChange={handleChange}
               placeholder="Введіть ваше ім'я"
@@ -89,6 +119,7 @@ export default function Contacts() {
               id="email"
               name="email"
               type="email"
+              required
               value={form.email}
               onChange={handleChange}
               placeholder="name@example.com"
@@ -102,6 +133,7 @@ export default function Contacts() {
               id="topic"
               name="topic"
               type="text"
+              required
               value={form.topic}
               onChange={handleChange}
               placeholder="Наприклад: благоустрій, освіта, культура"
@@ -115,6 +147,7 @@ export default function Contacts() {
               id="message"
               name="message"
               rows={6}
+              required
               value={form.message}
               onChange={handleChange}
               placeholder="Розкажи, яку зміну ти пропонуєш і чим можеш допомогти"
@@ -123,9 +156,10 @@ export default function Contacts() {
 
             <button
               type="submit"
-              className="w-full px-[22px] py-3 font-semibold text-[14.5px] rounded-[2px] bg-ochre text-white hover:bg-ochre-dk transition-colors"
+              disabled={isSubmitting}
+              className="w-full px-[22px] py-3 font-semibold text-[14.5px] rounded-[2px] bg-ochre text-white hover:bg-ochre-dk transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Надіслати ініціативу
+              {isSubmitting ? "Надсилання..." : "Надіслати ініціативу"}
             </button>
           </form>
         </div>
