@@ -8,7 +8,10 @@ export default function Header() {
       <div className="bg-ink text-[13px] text-slate-300">
         <div className="mx-auto max-w-[1180px] px-6 h-[38px] flex items-center justify-between">
           <div className="flex gap-4">
-            <a href="#" className="hover:text-white">Facebook</a>
+            <a href="https://www.facebook.com/share/g/1J8nGWR9E6/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-white">Facebook</a>
             <a href="#" className="hover:text-white">Telegram</a>
             <a href="#" className="hover:text-white">YouTube</a>
           </div>

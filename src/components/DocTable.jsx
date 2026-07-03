@@ -18,11 +18,24 @@ export default function DocTable({ rows }) {
         {rows.map((row, i) => (
           <tr key={i} className="hover:bg-white transition-colors">
             <td className="px-3.5 py-3 text-[14.5px] border-b border-ink/10">
-              <a href="#" className="text-ochre-dk hover:text-ochre">
-                {row.title}
-              </a>
+              {/* Перевіряємо, чи є в об'єкті робоче посилання url */}
+              {row.url ? (
+                <a 
+                  href={row.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-ochre-dk hover:text-ochre font-medium inline-flex items-center gap-1.5 transition-colors"
+                >
+                  {row.title}
+                  {/* Елегантна стрілочка зовнішнього посилання */}
+                  <span className="text-xs opacity-60 font-sans">↗</span>
+                </a>
+              ) : (
+                // Якщо посилання немає (наприклад, для Статуту чи Регламенту), виводимо просто текст
+                <span className="text-ink font-medium">{row.title}</span>
+              )}
             </td>
-            <td className="px-3.5 py-3 text-[14.5px] border-b border-ink/10">
+            <td className="px-3.5 py-3 text-[14.5px] border-b border-ink/10 text-stone-dk2">
               {row.date}
             </td>
             <td className="px-3.5 py-3 text-[14.5px] border-b border-ink/10">

@@ -36,9 +36,9 @@ export default function DocumentsLegal() {
               Категорії документів
             </h3>
             <ul className="space-y-2 text-sm list-disc pl-4.5">
-              <li><a href="#" className="text-ochre-dk hover:text-ochre">Закони України</a></li>
-              <li><a href="#" className="text-ochre-dk hover:text-ochre">Кодекси</a></li>
-              <li><a href="#" className="text-ochre-dk hover:text-ochre">Постанови КМУ</a></li>
+              <li><a href="https://www.rada.gov.ua/news/zak" className="text-ochre-dk hover:text-ochre">Закони України</a></li>
+              <li><a href="https://me.gov.ua/Documents/Detail?lang=uk-UA&id=1d502206-1d17-40f7-b021-3dd4d1e25b34&title=KodeksiUkraini" className="text-ochre-dk hover:text-ochre">Кодекси</a></li>
+              <li><a href="https://tax.gov.ua/zakonodavstvo/podatkove-zakonodavstvo/postanovi-kabinetu-ministr/" className="text-ochre-dk hover:text-ochre">Постанови КМУ</a></li>
               <li><a href="#" className="text-ochre-dk hover:text-ochre">Статут громади</a></li>
               <li><Link to="/documents-official" className="text-ochre-dk hover:text-ochre">Офіційні документи ради</Link></li>
             </ul>
